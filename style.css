@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.main-section {
+  padding: 20px;
+}
+.image-container {
+  display: inline-block;
+  margin: 10px;
+}
+img {
+  width: 300px; /* Ensure consistent width */
+  height: 200px; /* Ensure consistent height */
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+.footer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #18223a;
+}
+.footer a {
+  margin: 0 10px;
+}
