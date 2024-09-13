@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picture Book and Video Enhancement</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    
 </head>
 
 <body>
-    <!-- Picture Book Section -->
-    <header>
-        <h1>Picture Book</h1>
-        <!-- TODO: Add navigation links and additional headers -->
-    </header>
+    <!-- Navigation Buttons -->
+    <nav>
+        <button onclick="showSection('photos')">Photos</button>
+        <button onclick="showSection('videos')">Videos</button>
+    </nav>
 
-    <div class="container">
+    <!-- Photos Section -->
+    <div id="photos" class="container">
+        <header>
+            <h1>Picture Book</h1>
+            <!-- TODO: Add navigation links and additional headers -->
+        </header>
         <main class="main-section">
             <!-- Main Section for Images -->
             <div class="image-container">
@@ -62,13 +68,12 @@
         </main>
     </div>
 
-    <!-- Video Enhancement Section -->
-    <header>
-        <h1>Video Focus Enhancement</h1>
-        <!-- TODO: Add navigation links and additional headers -->
-    </header>
-
-    <div class="container">
+    <!-- Videos Section -->
+    <div id="videos" class="container hidden">
+        <header>
+            <h1>Video Focus Enhancement</h1>
+            <!-- TODO: Add navigation links and additional headers -->
+        </header>
         <main class="video-container">
             <h2>While watching the video please mute your phone and full screen it till it is over 🎥</h2>
             <h2>Fnaf Lore part 1</h2>
@@ -95,6 +100,17 @@
     </footer>
 
     <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
         const autoplayToggle = document.getElementById('autoplayToggle');
         const videoSrc = 'https://www.youtube.com/embed/4rs8B3KG8eE';
 

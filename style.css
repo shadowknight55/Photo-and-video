@@ -102,3 +102,18 @@ iframe {
 .footer {
   margin-top: 20px;
 }
+
+ /* Basic styles for hiding/showing sections */
+ .hidden {
+  display: none;
+}
+.container {
+  padding: 20px;
+}
+.controls {
+  margin-top: 20px;
+}
+iframe {
+  width: 100%;
+  height: 315px;
+}
