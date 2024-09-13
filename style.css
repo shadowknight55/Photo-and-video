@@ -71,7 +71,7 @@ body {
   padding: 0;
   background-image: url('background-image.jpg'); /* Replace with your background image */
   background-size: cover;
-  color: #747474;
+  color: #2e2e2e;
 }
 header, footer {
   background-color: rgba(0, 0, 0, 0.7);
