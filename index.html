@@ -61,6 +61,42 @@
             </div>
         </main>
     </div>
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Enhancement</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+           
+</head>
+
+<body>
+    <header>
+        <h1>Video Focus Enhancement</h1>
+        <!-- TODO: Add navigation links and additional headers -->
+    </header>
+
+    <div class="container">
+        <main class="video-container">
+            <h2>While watching the video please Mute your phone and full screen it till it is over 🎥</h2>
+            <h2>Fnaf Lore part 1</h2>
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/4rs8B3KG8eE" allowfullscreen></iframe>
+            <div class="controls">
+                <label for="autoplayToggle">Auto-Play:</label>
+                <input type="checkbox" id="autoplayToggle">
+                <label for="categorySelect">Select Category:</label>
+                <select id="categorySelect">
+                    <option value="music">Music</option>
+                    <option value="education">Education</option>
+                    <option value="entertainment">Entertainment</option>
+                </select>
+            </div>
+        </main>
+    </div>
 
     <footer class="footer">
         <p>Follow us on social media:</p>
@@ -69,6 +105,23 @@
         <a href="#">Twitter</a>
         <a href="#">Instagram</a>
     </footer>
+
+    <script>
+        const autoplayToggle = document.getElementById('autoplayToggle');
+        const videoSrc = 'https://www.youtube.com/embed/4rs8B3KG8eE';
+
+        // Update the video src to include autoplay based on checkbox state
+        function updateVideoSrc() {
+            const autoplay = autoplayToggle.checked ? 1 : 0;
+            document.getElementById('videoPlayer').src = `${videoSrc}?autoplay=${autoplay}`;
+        }
+
+        // Set initial autoplay based on checkbox state
+        updateVideoSrc();
+
+        // Toggle autoplay on checkbox change
+        autoplayToggle.addEventListener('change', updateVideoSrc);
+    </script>
 </body>
 
 </html>
