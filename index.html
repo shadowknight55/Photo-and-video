@@ -6,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picture Book and Video Enhancement</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    
 </head>
 
 <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
     <!-- Navigation Buttons -->
     <nav>
-        <button onclick="showSection('photos')">Photos</button>
-        <button onclick="showSection('videos')">Videos</button>
+        <button class="nav-button" data-target="photos">Photos</button>
+        <button class="nav-button" data-target="videos">Videos</button>
     </nav>
 
     <!-- Photos Section -->
     <div id="photos" class="container">
         <header>
             <h1>Picture Book</h1>
-            <!-- TODO: Add navigation links and additional headers -->
         </header>
         <main class="main-section">
-            <!-- Main Section for Images -->
             <div class="image-container">
                 <figure>
                     <a href="https://pm1.narvii.com/6547/3644eabbb077159c9000cd2557bca16b34591761_hq.jpg">
@@ -44,7 +47,6 @@
                 </figure>
                 <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Freddy_Fazbear">Freddy's Page</a>
             </div>
-            <!-- Additional Images -->
             <div class="image-container">
                 <figure>
                     <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Bonnie">
@@ -72,7 +74,6 @@
     <div id="videos" class="container hidden">
         <header>
             <h1>Video Focus Enhancement</h1>
-            <!-- TODO: Add navigation links and additional headers -->
         </header>
         <main class="video-container">
             <h2>While watching the video please mute your phone and full screen it till it is over 🎥</h2>
@@ -93,38 +94,43 @@
 
     <footer class="footer">
         <p>Follow us on social media:</p>
-        <!-- TODO: Add actual social media links -->
         <a href="#">Facebook</a>
         <a href="#">Twitter</a>
         <a href="#">Instagram</a>
     </footer>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.container');
-            sections.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
+        // Ensure the loading screen is hidden when the page initially loads
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.add('hidden');
+        });
+
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const loadingScreen = document.getElementById('loadingScreen');
+
+                // Show loading screen
+                loadingScreen.classList.remove('hidden');
+                
+                // Wait for a short time before switching sections
+                setTimeout(() => {
+                    document.querySelectorAll('.container').forEach(container => {
+                        if (container.id === targetId) {
+                            container.classList.remove('hidden');
+                            container.classList.add('show');
+                        } else {
+                            container.classList.add('hidden');
+                            container.classList.remove('show');
+                        }
+                    });
+
+                    // Hide loading screen
+                    loadingScreen.classList.add('hidden');
+                }, 500); // Adjust timing as needed
             });
-        }
-
-        const autoplayToggle = document.getElementById('autoplayToggle');
-        const videoSrc = 'https://www.youtube.com/embed/4rs8B3KG8eE';
-
-        // Update the video src to include autoplay based on checkbox state
-        function updateVideoSrc() {
-            const autoplay = autoplayToggle.checked ? 1 : 0;
-            document.getElementById('videoPlayer').src = `${videoSrc}?autoplay=${autoplay}`;
-        }
-
-        // Set initial autoplay based on checkbox state
-        updateVideoSrc();
-
-        // Toggle autoplay on checkbox change
-        autoplayToggle.addEventListener('change', updateVideoSrc);
+        });
     </script>
 </body>
 
