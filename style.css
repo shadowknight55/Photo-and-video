@@ -128,3 +128,25 @@ a:hover {
 .controls {
   margin-top: 20px;
 }
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Apply fade-in animation to images */
+.image-container img {
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 1s ease-in-out forwards; /* Run animation once */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+/* Hover effect to enlarge image */
+.image-container img:hover {
+  transform: scale(1.1); /* Enlarge image */
+}
+
+/* Ensure container is visible */
+.container.show {
+  opacity: 1;
+}
