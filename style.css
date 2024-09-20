@@ -150,3 +150,33 @@ a:hover {
 .container.show {
   opacity: 1;
 }
+/* Video Container Styles */
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Suggested Videos Section */
+.suggested-videos {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid */
+  gap: 10px;
+}
+
+.video-item {
+  text-align: center;
+}
+
+.video-item iframe {
+  width: 100%;
+  height: 90px; /* Adjust height for thumbnails */
+  border: none;
+}

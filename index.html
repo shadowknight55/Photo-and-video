@@ -70,27 +70,54 @@
         </main>
     </div>
 
-    <!-- Videos Section -->
-    <div id="videos" class="container hidden">
-        <header>
-            <h1>Video Focus Enhancement</h1>
-        </header>
-        <main class="video-container">
-            <h2>While watching the video please mute your phone and full screen it till it is over 🎥</h2>
-            <h2>Fnaf Lore part 1</h2>
-            <iframe id="videoPlayer" src="https://www.youtube.com/embed/4rs8B3KG8eE" allowfullscreen></iframe>
-            <div class="controls">
-                <label for="autoplayToggle">Auto-Play:</label>
-                <input type="checkbox" id="autoplayToggle">
-                <label for="categorySelect">Select Category:</label>
-                <select id="categorySelect">
-                    <option value="music">Music</option>
-                    <option value="education">Education</option>
-                    <option value="entertainment">Entertainment</option>
-                </select>
+ <!-- Videos Section -->
+<div id="videos" class="container hidden">
+    <header>
+        <h1>Video Focus Enhancement</h1>
+    </header>
+    <main class="video-container">
+        <h2>While watching the video please mute your phone and full screen it till it is over 🎥</h2>
+        <h2>Fnaf Lore part 1</h2>
+        <iframe id="videoPlayer" src="https://www.youtube.com/embed/4rs8B3KG8eE" allowfullscreen></iframe>
+        <div class="controls">
+            <label for="autoplayToggle">Auto-Play:</label>
+            <input type="checkbox" id="autoplayToggle">
+            <label for="categorySelect">Select Category:</label>
+            <select id="categorySelect">
+                <option value="music">Music</option>
+                <option value="education">Education</option>
+                <option value="entertainment">Entertainment</option>
+            </select>
+        </div>
+
+        <!-- Suggested Videos Section -->
+        <div class="suggested-videos">
+            <h3>Suggested Videos</h3>
+            <div class="video-list">
+                <div class="video-item" data-video-id="patvsyqr3Bw">
+                    <iframe src="https://www.youtube.com/embed/patvsyqr3Bw" allowfullscreen></iframe>
+                    <p>Suggested Video 1</p>
+                </div>
+                <div class="video-item" data-video-id="59ewVQBS4Zg">
+                    <iframe src="https://www.youtube.com/embed/59ewVQBS4Zg" allowfullscreen></iframe>
+                    <p>Suggested Video 2</p>
+                </div>
+                <div class="video-item" data-video-id="kf_irnQWOU8">
+                    <iframe src="https://www.youtube.com/embed/kf_irnQWOU8" allowfullscreen></iframe>
+                    <p>Suggested Video 3</p>
+                </div>
+                <div class="video-item" data-video-id="X0KbKzkfCO4">
+                    <iframe src="https://www.youtube.com/embed/X0KbKzkfCO4" allowfullscreen></iframe>
+                    <p>Suggested Video 4</p>
+                </div>
+                <div class="video-item" data-video-id="72AdszbWSjY">
+                    <iframe src="https://www.youtube.com/embed/72AdszbWSjY" allowfullscreen></iframe>
+                    <p>Suggested Video 5</p>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 
     <footer class="footer">
         <p>Follow us on social media:</p>
@@ -132,6 +159,8 @@
             });
         });
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 </body>
 
 </html>
