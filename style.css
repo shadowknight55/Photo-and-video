@@ -300,3 +300,23 @@ button[type="submit"]:hover {
 .action-buttons button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* Light Theme */
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Blue Theme */
+body.blue {
+  background-color: #03264bd7;
+  color: #ffffff;
+}
+
+/* Other existing styles remain unchanged */

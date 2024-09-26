@@ -20,6 +20,8 @@
         <button class="nav-button" data-target="videos">Videos</button>
     </nav>
 
+<!-- Theme Toggle Button -->
+    <button id="themeToggle">Toggle Theme</button>    
     <!-- Photos Section -->
 <div id="photos" class="container">
     <header>
@@ -169,6 +171,42 @@
         <a href="#">Twitter</a>
         <a href="#">Instagram</a>
     </footer>
+<!-- ... (previous HTML code) ... -->
+
+<script>
+    // Ensure the loading screen is hidden when the page initially loads
+    document.addEventListener("DOMContentLoaded", () => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        loadingScreen.classList.add('hidden');
+
+        // Load theme from local storage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.className = savedTheme;
+    });
+
+    // Theme Toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        let newTheme;
+
+        // Determine the next theme in the cycle
+        if (currentTheme === 'light') {
+            newTheme = 'dark';
+        } else if (currentTheme === 'dark') {
+            newTheme = 'blue';
+        } else {
+            newTheme = 'light';
+        }
+
+        document.body.className = newTheme; // Apply the new theme
+        localStorage.setItem('theme', newTheme); // Save theme preference
+
+        // Show feedback form
+        document.getElementById('feedbackFormContainer').style.display = 'block';
+    });
+</script>
+
+<!-- ... (remaining HTML code) ... -->
 
     <script>
         // Ensure the loading screen is hidden when the page initially loads
@@ -261,7 +299,7 @@ document.querySelectorAll('.dislike-btn').forEach(btn => {
             document.getElementById('feedbackForm').reset();
         });
         
-
+        
     </script>
     <script src="https://www.youtube.com/iframe_api"></script>
 

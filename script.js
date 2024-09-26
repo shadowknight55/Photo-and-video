@@ -133,5 +133,25 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(`Feedback submitted: ${feedbackType}`);
     });
 });
+// Theme Toggle
+document.getElementById('themeToggle').addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    let newTheme;
+
+    // Determine the next theme in the cycle
+    if (currentTheme === 'light') {
+        newTheme = 'dark';
+    } else if (currentTheme === 'dark') {
+        newTheme = 'blue';
+    } else {
+        newTheme = 'light';
+    }
+
+    document.body.className = newTheme; // Apply the new theme
+    localStorage.setItem('theme', newTheme); // Save theme preference
+
+    // Show feedback form
+    document.getElementById('feedbackFormContainer').style.display = 'block';
+});
 
      
