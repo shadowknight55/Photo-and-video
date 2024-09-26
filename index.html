@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Book and Video Enhancement</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    <!-- Navigation Buttons -->
+    <nav>
+        <button class="nav-button" data-target="photos">Photos</button>
+        <button class="nav-button" data-target="videos">Videos</button>
+    </nav>
+
+    <!-- Photos Section -->
+<div id="photos" class="container">
+    <header>
+        <h1>Picture Book</h1>
+    </header>
+    <main class="main-section">
+        <!-- Image 1 -->
+        <div class="image-container">
+            <figure>
+                <a href="https://pm1.narvii.com/6547/3644eabbb077159c9000cd2557bca16b34591761_hq.jpg">
+                    <img src="https://pm1.narvii.com/6547/3644eabbb077159c9000cd2557bca16b34591761_hq.jpg" alt="Foxy the pirate fox">
+                </a>
+                <figcaption>Foxy</figcaption>
+            </figure>
+            <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Foxy">Foxy's Page</a>
+            <div class="action-buttons">
+                <button class="like-btn">👍 Like</button>
+                <button class="dislike-btn">👎 Dislike</button>
+                <button class="hide-btn">🛑 Hide</button>
+                <button class="share-btn">🔗 Share</button>
+            </div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="image-container">
+            <figure>
+                <a href="https://th.bing.com/th/id/OIP.xFFlotFU-KWGjF0ec_KTbAHaJS?rs=1&pid=ImgDetMain">
+                    <img src="https://th.bing.com/th/id/OIP.xFFlotFU-KWGjF0ec_KTbAHaJS?rs=1&pid=ImgDetMain" alt="Freddy Fazbear">
+                </a>
+                <figcaption>Freddy</figcaption>
+            </figure>
+            <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Freddy_Fazbear">Freddy's Page</a>
+            <div class="action-buttons">
+                <button class="like-btn">👍 Like</button>
+                <button class="dislike-btn">👎 Dislike</button>
+                <button class="hide-btn">🛑 Hide</button>
+                <button class="share-btn">🔗 Share</button>
+            </div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="image-container">
+            <figure>
+                <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Bonnie">
+                    <img src="https://vignette.wikia.nocookie.net/katiefuntimesfm/images/e/e6/Bonniefixrender1.png/revision/latest?cb=20201106001826" alt="Bonnie the Bunny">
+                </a>
+                <figcaption>Bonnie</figcaption>
+            </figure>
+            <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Bonnie">Bonnie's Page</a>
+            <div class="action-buttons">
+                <button class="like-btn">👍 Like</button>
+                <button class="dislike-btn">👎 Dislike</button>
+                <button class="hide-btn">🛑 Hide</button>
+                <button class="share-btn">🔗 Share</button>
+            </div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="image-container">
+            <figure>
+                <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Chica4">
+                    <img src="https://th.bing.com/th/id/R.75bc54843b67020c3f2387cd8a2dbdb2?rik=KAbDet4wnScnpA&pid=ImgRaw&r=0" alt="Chica the chicken">
+                </a>
+                <figcaption>Chica</figcaption>
+            </figure>
+            <a href="https://freddy-fazbears-pizza.fandom.com/wiki/Chica">Chica's Page</a>
+            <div class="action-buttons">
+                <button class="like-btn">👍 Like</button>
+                <button class="dislike-btn">👎 Dislike</button>
+                <button class="hide-btn">🛑 Hide</button>
+                <button class="share-btn">🔗 Share</button>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <footer>
+        <h2>Leave Your Feedback</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="feedbackType">Feedback Type:</label>
+                <select id="feedbackType" required>
+                    <option value="general">General Feedback</option>
+                    <option value="enhancement">App Enhancement</option>
+                    <option value="comment">General Comment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="feedbackMessage">Your Feedback:</label>
+                <textarea id="feedbackMessage" placeholder="Your feedback..." required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </footer>
+    
+
+
+    <!-- Videos Section -->
+<div id="videos" class="container hidden">
+    <header>
+        <h1>Video Focus Enhancement</h1>
+    </header>
+    <main class="video-container">
+        <h2>While watching the video please mute your phone and full screen it till it is over 🎥</h2>
+        <h2>Fnaf Lore part 1</h2>
+        <iframe id="videoPlayer" src="https://www.youtube.com/embed/4rs8B3KG8eE" allowfullscreen></iframe>
+        <div class="controls">
+            <label for="autoplayToggle">Auto-Play:</label>
+            <input type="checkbox" id="autoplayToggle">
+            <label for="categorySelect">Select Category:</label>
+            <select id="categorySelect">
+                <option value="music">Music</option>
+                <option value="education">Education</option>
+                <option value="entertainment">Entertainment</option>
+            </select>
+        </div>
+
+        <!-- Suggested Videos Section -->
+        <div class="suggested-videos">
+            <h3>Suggested Videos</h3>
+            <div class="video-list">
+                <div class="video-item" data-video-id="patvsyqr3Bw">
+                    <iframe src="https://www.youtube.com/embed/patvsyqr3Bw" allowfullscreen></iframe>
+                    <p>Suggested Video 1</p>
+                </div>
+                <div class="video-item" data-video-id="59ewVQBS4Zg">
+                    <iframe src="https://www.youtube.com/embed/59ewVQBS4Zg" allowfullscreen></iframe>
+                    <p>Suggested Video 2</p>
+                </div>
+                <div class="video-item" data-video-id="kf_irnQWOU8">
+                    <iframe src="https://www.youtube.com/embed/kf_irnQWOU8" allowfullscreen></iframe>
+                    <p>Suggested Video 3</p>
+                </div>
+                <div class="video-item" data-video-id="X0KbKzkfCO4">
+                    <iframe src="https://www.youtube.com/embed/X0KbKzkfCO4" allowfullscreen></iframe>
+                    <p>Suggested Video 4</p>
+                </div>
+                <div class="video-item" data-video-id="72AdszbWSjY">
+                    <iframe src="https://www.youtube.com/embed/72AdszbWSjY" allowfullscreen></iframe>
+                    <p>Suggested Video 5</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Follow us on social media:</p>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </footer>
+
+    <script>
+        // Ensure the loading screen is hidden when the page initially loads
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.add('hidden');
+
+            // Create feedback form dropdown
+            const feedbackType = document.getElementById('feedbackType');
+            feedbackType.addEventListener('change', () => {
+                console.log(`Feedback Type Selected: ${feedbackType.value}`);
+            });
+        });
+
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const loadingScreen = document.getElementById('loadingScreen');
+
+                // Show loading screen
+                loadingScreen.classList.remove('hidden');
+
+                // Wait for a short time before switching sections
+                setTimeout(() => {
+                    document.querySelectorAll('.container').forEach(container => {
+                        if (container.id === targetId) {
+                            container.classList.remove('hidden');
+                            container.classList.add('show');
+                        } else {
+                            container.classList.add('hidden');
+                            container.classList.remove('show');
+                        }
+                    });
+
+                    // Hide loading screen
+                    loadingScreen.classList.add('hidden');
+                }, 500); // Adjust timing as needed
+            });
+        });
+
+        // Like, dislike, hide, and share functionality
+document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const dislikeBtn = btn.closest('.action-buttons').querySelector('.dislike-btn');
+        btn.innerText = btn.innerText === '👍 Like' ? 'Liked' : '👍 Like';
+        
+        // Disable the dislike button
+        if (btn.innerText === 'Liked') {
+            dislikeBtn.disabled = true;
+        } else {
+            dislikeBtn.disabled = false;
+        }
+    });
+});
+
+document.querySelectorAll('.dislike-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const likeBtn = btn.closest('.action-buttons').querySelector('.like-btn');
+        btn.innerText = btn.innerText === '👎 Dislike' ? 'Disliked' : '👎 Dislike';
+        
+        // Disable the like button
+        if (btn.innerText === 'Disliked') {
+            likeBtn.disabled = true;
+        } else {
+            likeBtn.disabled = false;
+        }
+    });
+});
+
+
+        document.querySelectorAll('.hide-btn').forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                const imageContainer = event.target.closest('.image-container');
+                imageContainer.style.display = 'none'; // Hide the image
+            });
+        });
+
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Image link copied to clipboard!'); // Replace with actual sharing logic
+            });
+        });
+
+        // Feedback form submission
+        document.getElementById('feedbackForm').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            const feedbackMessage = document.getElementById('feedbackMessage').value;
+            console.log(`Feedback Submitted: ${feedbackType.value} - ${feedbackMessage}`);
+            // Reset the form
+            document.getElementById('feedbackForm').reset();
+        });
+        
+
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>
