@@ -8,7 +8,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Open the theme selection modal
     document.getElementById('themeToggle').addEventListener('click', () => {
-        document.getElementById('themeModal').style.display = 'block';
+        const themeModal = document.getElementById('themeModal');
+        themeModal.style.display = 'block';
+
+        // Create theme options
+        const themeSelect = document.getElementById('theme');
+        const themes = ['light', 'dark', 'blue'];
+        themeSelect.innerHTML = ''; // Clear previous options
+
+        themes.forEach(theme => {
+            const option = document.createElement('option');
+            option.value = theme;
+            option.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+            themeSelect.appendChild(option);
+        });
     });
 
     // Close the modal
@@ -35,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Wait for a short time before switching sections
             setTimeout(() => {
-                document.querySelectorAll('.container').forEach(container => {
+                document.querySelectorAll('.image-container').forEach(container => {
                     if (container.id === targetId) {
                         container.classList.remove('hidden');
                         container.classList.add('show');
@@ -56,8 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener('click', () => {
             const dislikeBtn = btn.closest('.action-buttons').querySelector('.dislike-btn');
             btn.innerText = btn.innerText === '👍 Like' ? 'Liked' : '👍 Like';
-            
-            // Disable the dislike button
             dislikeBtn.disabled = (btn.innerText === 'Liked');
         });
     });
@@ -66,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener('click', () => {
             const likeBtn = btn.closest('.action-buttons').querySelector('.like-btn');
             btn.innerText = btn.innerText === '👎 Dislike' ? 'Disliked' : '👎 Dislike';
-            
-            // Disable the like button
             likeBtn.disabled = (btn.innerText === 'Disliked');
         });
     });
