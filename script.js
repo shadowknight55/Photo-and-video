@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Create theme options
         const themeSelect = document.getElementById('theme');
         const themes = ['light', 'dark', 'blue'];
-        themeSelect.innerHTML = ''; // Clear previous options
+           themeSelect.innerHTML = ''; // Clear previous options
 
         themes.forEach(theme => {
             const option = document.createElement('option');
