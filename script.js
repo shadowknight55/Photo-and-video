@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Create theme options
         const themeSelect = document.getElementById('theme');
         const themes = ['light', 'dark', 'blue'];
-           themeSelect.innerHTML = ''; // Clear previous options
+        themeSelect.innerHTML = ''; // Clear previous options
 
         themes.forEach(theme => {
             const option = document.createElement('option');
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Wait for a short time before switching sections
             setTimeout(() => {
-                document.querySelectorAll('.image-container').forEach(container => {
+                document.querySelectorAll('.container').forEach(container => {
                     if (container.id === targetId) {
                         container.classList.remove('hidden');
                         container.classList.add('show');
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Feedback form submission
     document.getElementById('feedbackForm').addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent form submission
-        const feedbackType = document.getElementById('feedbackSelect').value; // Ensure you have this element
+        const feedbackType = document.getElementById('feedbackType').value; // Ensure you have this element
         const feedbackMessage = document.getElementById('feedbackMessage').value;
         console.log(`Feedback Submitted: ${feedbackType} - ${feedbackMessage}`);
         
