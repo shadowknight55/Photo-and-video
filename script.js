@@ -1,157 +1,98 @@
-let player;
-let videoList = [
-    { id: "4rs8B3KG8eE", duration: 1680 }, // Main Video: 28 minutes
-    { id: "patvsyqr3Bw", duration: 1837 }, // Suggested Video 1: 30 minutes 37 seconds
-    { id: "59ewVQBS4Zg", duration: 1872 }, // Suggested Video 2: 31 minutes 22 seconds
-    { id: "kf_irnQWOU8", duration: 5177 }, // Suggested Video 3: 1 hour 26 minutes 17 seconds
-    { id: "X0KbKzkfCO4", duration: 827 },  // Suggested Video 4: 13 minutes 47 seconds
-    { id: "72AdszbWSjY", duration: 34 }     // Suggested Video 5: 34 seconds
-];
-let currentVideoIndex = 0;
-let timerInterval;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('videoPlayer', {
-        height: '450',
-        width: '100%',
-        videoId: videoList[currentVideoIndex].id,
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.ENDED) {
-        playNextVideo();
-    } else if (event.data === YT.PlayerState.PLAYING) {
-        startTimer(); // Start timer when video is playing
-    } else if (event.data === YT.PlayerState.PAUSED) {
-        stopTimer(); // Stop timer when video is paused
-    }
-}
-
-function startTimer() {
-    stopTimer(); // Stop any existing timer
-    let remainingTime = videoList[currentVideoIndex].duration;
-    updateTimerDisplay(remainingTime);
-    timerInterval = setInterval(() => {
-        remainingTime--;
-        updateTimerDisplay(remainingTime);
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-            playNextVideo();
-        }
-    }, 1000);
-}
-
-function stopTimer() {
-    clearInterval(timerInterval);
-    updateTimerDisplay(0); // Reset timer display
-}
-
-function updateTimerDisplay(seconds) {
-    const timerElement = document.getElementById('videoTimer');
-    timerElement.textContent = `Time Remaining: ${formatTime(seconds)}`;
-}
-
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
-
-function playNextVideo() {
-    if (currentVideoIndex < videoList.length - 1) {
-        currentVideoIndex++;
-        player.loadVideoById(videoList[currentVideoIndex].id);
-        if (document.getElementById('autoplayToggle').checked) {
-            enterFullScreen();
-        }
-    }
-}
-
-// Function to enter full screen
-function enterFullScreen() {
-    const iframe = document.getElementById('videoPlayer');
-    if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-    } else if (iframe.mozRequestFullScreen) { // Firefox
-        iframe.mozRequestFullScreen();
-    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-        iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) { // IE/Edge
-        iframe.msRequestFullscreen();
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const loadingScreen = document.getElementById('loadingScreen');
     loadingScreen.classList.add('hidden');
 
-    // Video item event listeners
-    document.querySelectorAll('.video-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const videoId = item.getAttribute('data-video-id');
-            currentVideoIndex = videoList.findIndex(video => video.id === videoId);
-            player.loadVideoById(videoId);
-            startTimer();
-            if (document.getElementById('autoplayToggle').checked) {
-                enterFullScreen();
-            }
-        });
+    // Load theme from local storage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.className = savedTheme;
+
+    // Open the theme selection modal
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        document.getElementById('themeModal').style.display = 'block';
     });
 
-    // Photo buttons event listeners
-    document.querySelectorAll('.like-btn').forEach(button => {
+    // Close the modal
+    document.querySelector('.close').addEventListener('click', () => {
+        document.getElementById('themeModal').style.display = 'none';
+    });
+
+    // Save the theme preference
+    document.getElementById('themeForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const selectedTheme = document.getElementById('theme').value;
+        document.body.className = selectedTheme; // Change theme
+        localStorage.setItem('theme', selectedTheme); // Save to local storage
+        document.getElementById('themeModal').style.display = 'none'; // Close the modal
+    });
+
+    // Navigation button functionality
+    document.querySelectorAll('.nav-button').forEach(button => {
         button.addEventListener('click', () => {
-            alert('You liked this photo!');
+            const targetId = button.getAttribute('data-target');
+
+            // Show loading screen
+            loadingScreen.classList.remove('hidden');
+
+            // Wait for a short time before switching sections
+            setTimeout(() => {
+                document.querySelectorAll('.container').forEach(container => {
+                    if (container.id === targetId) {
+                        container.classList.remove('hidden');
+                        container.classList.add('show');
+                    } else {
+                        container.classList.add('hidden');
+                        container.classList.remove('show');
+                    }
+                });
+
+                // Hide loading screen
+                loadingScreen.classList.add('hidden');
+            }, 500); // Adjust timing as needed
         });
     });
 
-    document.querySelectorAll('.dislike-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            alert('You disliked this photo!');
+    // Like, dislike, hide, and share functionality
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const dislikeBtn = btn.closest('.action-buttons').querySelector('.dislike-btn');
+            btn.innerText = btn.innerText === '👍 Like' ? 'Liked' : '👍 Like';
+            
+            // Disable the dislike button
+            dislikeBtn.disabled = (btn.innerText === 'Liked');
         });
     });
 
-    document.querySelectorAll('.hide-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.target.closest('.image-container').style.display = 'none';
+    document.querySelectorAll('.dislike-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const likeBtn = btn.closest('.action-buttons').querySelector('.like-btn');
+            btn.innerText = btn.innerText === '👎 Dislike' ? 'Disliked' : '👎 Dislike';
+            
+            // Disable the like button
+            likeBtn.disabled = (btn.innerText === 'Disliked');
         });
     });
 
-    document.querySelectorAll('.share-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            alert('Share this photo with your friends!');
+    document.querySelectorAll('.hide-btn').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            const imageContainer = event.target.closest('.image-container');
+            imageContainer.style.display = 'none'; // Hide the image
         });
     });
 
-    // Feedback submission
-    document.getElementById('submitFeedback').addEventListener('click', () => {
-        const feedbackType = document.getElementById('feedbackSelect').value;
-        alert(`Feedback submitted: ${feedbackType}`);
+    document.querySelectorAll('.share-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Image link copied to clipboard!'); // Replace with actual sharing logic
+        });
+    });
+
+    // Feedback form submission
+    document.getElementById('feedbackForm').addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission
+        const feedbackType = document.getElementById('feedbackSelect').value; // Ensure you have this element
+        const feedbackMessage = document.getElementById('feedbackMessage').value;
+        console.log(`Feedback Submitted: ${feedbackType} - ${feedbackMessage}`);
+        
+        // Reset the form
+        document.getElementById('feedbackForm').reset();
     });
 });
-// Theme Toggle
-document.getElementById('themeToggle').addEventListener('click', () => {
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    let newTheme;
-
-    // Determine the next theme in the cycle
-    if (currentTheme === 'light') {
-        newTheme = 'dark';
-    } else if (currentTheme === 'dark') {
-        newTheme = 'blue';
-    } else {
-        newTheme = 'light';
-    }
-
-    document.body.className = newTheme; // Apply the new theme
-    localStorage.setItem('theme', newTheme); // Save theme preference
-
-    // Show feedback form
-    document.getElementById('feedbackFormContainer').style.display = 'block';
-});
-
-     
