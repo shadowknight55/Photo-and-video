@@ -6,24 +6,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.className = savedTheme;
 
+    let isPasswordSet = false; // Track if the password has been set
+
+    // Open profile form
+    document.getElementById('profileToggle').addEventListener('click', () => {
+        const profileContainer = document.getElementById('profileFormContainer');
+        profileContainer.style.display = profileContainer.style.display === 'none' ? 'block' : 'none';
+    });
+
     // Open the theme selection modal
     document.getElementById('themeToggle').addEventListener('click', () => {
         const themeModal = document.getElementById('themeModal');
         themeModal.style.display = 'block';
 
         const themeSelect = document.getElementById('theme');
-        const themes = ['light', 'dark', 'blue', 'nature', 'space', 'retro'];
-        themeSelect.innerHTML = ''; // Clear previous options
-
-        themes.forEach(theme => {
-            const option = document.createElement('option');
-            option.value = theme;
-            option.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
-            themeSelect.appendChild(option);
-        });
-
-        // Set the current theme in the select box
-        themeSelect.value = savedTheme;
+        themeSelect.innerHTML = `
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="blue">Blue</option>
+            <option value="nature">Nature</option>
+            <option value="space">Space</option>
+            <option value="retro">Retro</option>
+        `;
+        themeSelect.value = savedTheme; // Set current theme in dropdown
     });
 
     // Close the modal
@@ -46,9 +51,39 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('themeModal').style.display = 'none';
     });
 
+    // Profile form submission
+    document.getElementById('profileForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Basic validation for username length
+        if (username.length < 4) {
+            document.getElementById('usernameError').textContent = "Username must be at least 4 characters long.";
+            return;
+        } else {
+            document.getElementById('usernameError').textContent = "";
+        }
+
+        // Set password and mark it as set
+        if (password) {
+            isPasswordSet = true; // Password is set
+            console.log(`Profile Created: ${username}, ${email}`);
+            document.getElementById('profileForm').reset();
+            document.getElementById('profileFormContainer').style.display = 'none'; // Hide profile form
+        } else {
+            alert("Please enter a password.");
+        }
+    });
+
     // Navigation button functionality
     document.querySelectorAll('.nav-button').forEach(button => {
         button.addEventListener('click', () => {
+            if (!isPasswordSet) {
+                alert("You must enter a password to access this section.");
+                return; // Prevent navigation if password is not set
+            }
             const targetId = button.getAttribute('data-target');
             loadingScreen.classList.remove('hidden');
 
@@ -68,36 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Like, dislike, hide, and share functionality
-    document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const dislikeBtn = btn.closest('.action-buttons').querySelector('.dislike-btn');
-            btn.innerText = btn.innerText === '👍 Like' ? 'Liked' : '👍 Like';
-            dislikeBtn.disabled = (btn.innerText === 'Liked');
-        });
-    });
-
-    document.querySelectorAll('.dislike-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const likeBtn = btn.closest('.action-buttons').querySelector('.like-btn');
-            btn.innerText = btn.innerText === '👎 Dislike' ? 'Disliked' : '👎 Dislike';
-            likeBtn.disabled = (btn.innerText === 'Disliked');
-        });
-    });
-
-    document.querySelectorAll('.hide-btn').forEach(btn => {
-        btn.addEventListener('click', (event) => {
-            const imageContainer = event.target.closest('.image-container');
-            imageContainer.style.display = 'none'; 
-        });
-    });
-
-    document.querySelectorAll('.share-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('Image link copied to clipboard!');
-        });
-    });
-
     // Feedback form submission
     document.getElementById('feedbackForm').addEventListener('submit', (event) => {
         event.preventDefault();
@@ -107,4 +112,3 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('feedbackForm').reset();
     });
 });
-

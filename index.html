@@ -10,39 +10,45 @@
 </head>
 
 <body>
-    <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
-    
-    <!-- Navigation Buttons -->
+
     <nav>
         <button class="nav-button" data-target="photos">Photos</button>
         <button class="nav-button" data-target="videos">Videos</button>
+        <button id="profileToggle">Profile</button>
+        <button id="themeToggle">Select Theme</button>
     </nav>
 
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle">Select Theme</button>
+    <div id="profileFormContainer" style="display:none;">
+        <h2>Create Profile</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="username">Username (min 4 characters):</label>
+                <input type="text" id="username" required>
+                <span id="usernameError" class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Save Profile</button>
+        </form>
+    </div>
 
-    <!-- Modal for Theme Selection -->
     <div id="themeModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Select Your Theme</h2>
             <form id="themeForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
                 <label for="theme">Theme:</label>
-                <select id="theme" name="theme">
-                    <!-- <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                    <option value="blue">Blue</option>-->
-                </select>
+                <select id="theme" name="theme"></select>
                 <button type="submit">Save Preferences</button>
             </form>
         </div>
@@ -190,7 +196,8 @@
             </div>
         </main>
     </div>
+    
     <script src="https://www.youtube.com/iframe_api"></script> <!-- For YouTube API -->
-    <script src="script.js"></script> 
+    <script src="script.js"></script>
 </body>
 </html>
