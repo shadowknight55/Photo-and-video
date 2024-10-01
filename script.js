@@ -11,9 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const themeModal = document.getElementById('themeModal');
         themeModal.style.display = 'block';
 
-        // Create theme options
         const themeSelect = document.getElementById('theme');
-        const themes = ['light', 'dark', 'blue'];
+        const themes = ['light', 'dark', 'blue', 'nature', 'space', 'retro'];
         themeSelect.innerHTML = ''; // Clear previous options
 
         themes.forEach(theme => {
@@ -22,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
             option.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
             themeSelect.appendChild(option);
         });
+
+        // Set the current theme in the select box
+        themeSelect.value = savedTheme;
     });
 
     // Close the modal
@@ -29,24 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('themeModal').style.display = 'none';
     });
 
+    // Switch theme function
+    function switchTheme(theme) {
+        document.body.className = ''; // Clear all classes
+        document.body.classList.add(theme); // Add the selected theme class
+    }
+
     // Save the theme preference
     document.getElementById('themeForm').addEventListener('submit', (event) => {
         event.preventDefault();
         const selectedTheme = document.getElementById('theme').value;
-        document.body.className = selectedTheme; // Change theme
-        localStorage.setItem('theme', selectedTheme); // Save to local storage
-        document.getElementById('themeModal').style.display = 'none'; // Close the modal
+        switchTheme(selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+        document.getElementById('themeModal').style.display = 'none';
     });
 
     // Navigation button functionality
     document.querySelectorAll('.nav-button').forEach(button => {
         button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target');
-
-            // Show loading screen
             loadingScreen.classList.remove('hidden');
 
-            // Wait for a short time before switching sections
             setTimeout(() => {
                 document.querySelectorAll('.container').forEach(container => {
                     if (container.id === targetId) {
@@ -58,9 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Hide loading screen
                 loadingScreen.classList.add('hidden');
-            }, 500); // Adjust timing as needed
+            }, 500);
         });
     });
 
@@ -84,24 +88,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.hide-btn').forEach(btn => {
         btn.addEventListener('click', (event) => {
             const imageContainer = event.target.closest('.image-container');
-            imageContainer.style.display = 'none'; // Hide the image
+            imageContainer.style.display = 'none'; 
         });
     });
 
     document.querySelectorAll('.share-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            alert('Image link copied to clipboard!'); // Replace with actual sharing logic
+            alert('Image link copied to clipboard!');
         });
     });
 
     // Feedback form submission
     document.getElementById('feedbackForm').addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent form submission
-        const feedbackType = document.getElementById('feedbackType').value; // Ensure you have this element
+        event.preventDefault();
+        const feedbackType = document.getElementById('feedbackType').value;
         const feedbackMessage = document.getElementById('feedbackMessage').value;
         console.log(`Feedback Submitted: ${feedbackType} - ${feedbackMessage}`);
-        
-        // Reset the form
         document.getElementById('feedbackForm').reset();
     });
 });
+
