@@ -1,300 +1,214 @@
 /* General Styles */
 body {
-  font-family: 'Playfair Display', serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
+  font-family: 'Playfair Display', serif; /* Font style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  line-height: 1.6; /* Line height for readability */
+  background-color: #f4f4f4; /* Light background */
+  color: #333; /* Dark text color */
 }
 
 header, footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 15px 0;
+  background: #333; /* Dark background for header/footer */
+  color: #fff; /* White text */
+  text-align: center; /* Center text */
+  padding: 15px 0; /* Vertical padding */
 }
 
 /* Loading Screen Styles */
 .loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: opacity 0.5s ease;
+  position: fixed; /* Fixed position on screen */
+  top: 0; left: 0; /* Start at the top-left */
+  width: 100%; height: 100%; /* Full screen size */
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  display: flex; /* Flexbox for centering */
+  flex-direction: column; /* Column layout */
+  justify-content: center; align-items: center; /* Center content */
+  z-index: 1000; /* On top of other content */
+  transition: opacity 0.5s; /* Smooth fade */
 }
 
 .loading-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0; /* Hidden state */
+  pointer-events: none; /* Disable interactions */
 }
 
 /* Loading Animation */
 .spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #007bff;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
+  border: 8px solid #f3f3f3; /* Light border */
+  border-top: 8px solid #007bff; /* Blue top border for animation */
+  border-radius: 50%; /* Circular shape */
+  width: 50px; height: 50px; /* Fixed size */
+  animation: spin 1s linear infinite; /* Spin animation */
+  margin-bottom: 10px; /* Space below spinner */
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); } /* Start rotation */
+  to { transform: rotate(360deg); } /* End rotation */
 }
 
 /* Navigation Styles */
 nav {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  display: flex; /* Flexbox for layout */
+  justify-content: center; /* Center navigation */
+  margin-bottom: 20px; /* Space below navigation */
 }
 
 .nav-button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  margin: 0 10px; /* Horizontal spacing */
+  padding: 10px 20px; /* Button padding */
+  background: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background 0.3s; /* Smooth background change */
 }
 
 .nav-button:hover {
-  background-color: #0056b3;
+  background: #0056b3; /* Darker blue on hover */
 }
 
-/* Container and Section Styles */
+/* Container Styles */
 .container {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  display: none;
+  opacity: 0; /* Start hidden */
+  display: none; /* Start not displayed */
+  transition: opacity 0.5s; /* Smooth fade in */
 }
 
 .container.show {
-  opacity: 1;
-  display: block;
+  opacity: 1; /* Fully visible */
+  display: block; /* Display block */
 }
 
 /* Image and Video Section */
-.main-section, .video-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px auto;
-  gap: 20px;
+
+.video-item {
+  background-color: #f9f9f9; /* Light background for video item */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden; /* Hide overflow */
+  text-align: center; /* Center text */
+  max-width: 100%; /* Limit width to 100% of parent */
+}
+
+.video-item iframe {
+  width: 100%; /* Responsive width */
+  height: auto; /* Auto height to maintain aspect ratio */
+  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
+  border: none; /* Remove border */
 }
 
 .image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  text-align: center;
-  max-width: 200px;
+  display: flex; /* Flexbox for vertical layout */
+  flex-direction: column; /* Column layout */
+  align-items: center; /* Center items */
+  max-width: 200px; /* Max width for images */
 }
 
 .image-container img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
+  width: 100%; /* Responsive width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Rounded corners */
+  transition: transform 0.3s; /* Smooth zoom on hover */
 }
 
 .image-container img:hover {
-  transform: scale(1.05);
-}
-
-figcaption {
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-/* Action Buttons */
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-}
-
-.action-buttons button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.action-buttons button:hover {
-  background-color: #0056b3;
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 /* Feedback Form Styles */
 footer {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Max width for footer */
+  margin: 20px auto; /* Center footer */
+  padding: 20px; /* Inner padding */
+  background: #333; /* Dark background */
+  border-radius: 5px; /* Rounded corners */
 }
 
 h2 {
-  text-align: center;
+  text-align: center; /* Center heading */
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  margin-top: 5px;
+/* Form Styles */
+input, select, textarea {
+  width: 100%; /* Full width inputs */
+  padding: 8px; /* Inner padding */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  margin-top: 5px; /* Space above */
 }
 
 textarea {
-  height: 80px;
-  resize: vertical;
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
+  height: 80px; /* Fixed height */
+  resize: vertical; /* Allow vertical resize */
 }
 
 /* Modal Styles */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed position */
+  z-index: 1000; /* On top of other content */
+  left: 0; top: 0; /* Cover full screen */
+  width: 100%; height: 100%; /* Full size */
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
 }
 
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 400px;
+  background: #fff; /* White background */
+  margin: 10% auto; /* Center modal */
+  padding: 20px; /* Inner padding */
+  border-radius: 8px; /* Rounded corners */
+  width: 400px; /* Fixed width */
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+  color: #aaa; /* Light color for close button */
+  float: right; /* Align right */
+  font-size: 28px; /* Large font */
 }
 
 /* Suggested Videos Section */
-.suggested-videos {
-  margin-top: 20px;
-}
-
 .video-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.video-item {
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-}
-
-.video-item iframe {
-  width: 100%;
-  height: 100px;
-  border: none;
+  display: grid; /* Grid layout */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between items */
 }
 
 /* Error Message Styles */
 .error-message {
-  color: red;
-  font-size: 0.8em;
+  color: red; /* Red text for errors */
+  font-size: 0.8em; /* Smaller font size */
 }
 
-/* Light and Dark Themes */
+/* Theme Styles */
 body.light {
-  background-color: #ffffff;
-  color: #000;
+  background: #ffffff; /* Light background */
+  color: #000; /* Dark text */
 }
 
 body.dark {
-  background-color: #000;
-  color: #fff;
+  background: #000; /* Dark background */
+  color: #fff; /* Light text */
 }
 
-/* Add more themes as needed */
 body.blue {
-  background-color: #03264b;
-  color: #200529;
+  background: #03264b; /* Blue theme */
+  color: #200529; /* Darker text */
 }
 
 body.nature {
-  background-color: #e0f7fa;
-  color: #004d40;
+  background: #e0f7fa; /* Light nature theme */
+  color: #004d40; /* Dark green text */
 }
 
 body.space {
-  background-color: #000022;
-  color: #ffffff;
+  background: #000022; /* Dark space theme */
+  color: #ffffff; /* White text */
 }
 
 body.retro {
-  background-color: #ffcc00;
-  color: #8a3b00;
+  background: #ffcc00; /* Bright retro theme */
+  color: #8a3b00; /* Dark brown text */
 }
